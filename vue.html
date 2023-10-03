@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+        .green{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Hola {{nombre}} 
+        </h1>
+        <div v-if="isVisible" class="box"></div>
+        <div v-show="isVisible" class="box green"></div>
+        <button @click="toggleDivVisibility"> Click me!</button>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+       let app = Vue.createApp({
+        data: function(){
+            return {
+                nombre: "Juana",
+                isVisible: false
+            }
+        },
+        methods: {
+            toggleDivVisibility (){
+                /*opcion a*/
+                if(this.isVisible === true){
+                    this.isVisible = false
+                }else{
+                    this.isVisible = true
+                }
+                /*opcion b*/
+                //this.isVisible = !this.isVisible
+            },
+            showSth(){
+
+            }
+        }
+       });
+
+        app.mount("#app")
+
+    </script>
+</body>
+</html>
