@@ -34,9 +34,14 @@
           d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
       </svg>
       <form action="" class="search-form">
-        <input type="search" name="search" id="search" placeholder="Buscar..." />
+        <input v-model="searchText" type="search" name="search" id="search" placeholder="Buscar..." />
         <button type="submit"><i class="fas fa-search"></i></button>
       </form>
+      <ul>
+        <li v-for="result in searchResults">
+          {{result.name}}
+        </li>
+      </ul>
     </header>
 
     <section class="hero">
@@ -77,13 +82,18 @@
         <h2>Destacados</h2>
         <div id="featured-products-container" class="products-card-container">
 
-          <div v-for="product in productsList" v-bind:key="product.name" class="product-card">
-            <img v-bind:src="product.url" v-bind:alt="'Foto '+ product.name">
-            <div class="product-data">
-              <h3>{{product.name}}</h3>
-              <p>{{product.price}}</p>
-              <a href="#" class="btn">Comprar ahora</a>
-            </div>
+          <div v-for="product in productsList" >
+            <product-card :product="product"></product-card>
+          </div>
+
+        </div>
+      </section>
+      <section class="products-section">
+        <h2>Semana de descuentos</h2>
+        <div id="featured-products-container" class="products-card-container">
+
+          <div v-for="product in productsWithDiscount" v-bind:key="product.name" class="product-card">
+            <product-card :product="product"></product-card>
           </div>
 
         </div>
