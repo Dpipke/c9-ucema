@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Volume tracker</h1>
+        <h2>Volume {{volume}}</h2>
+        <button v-on:click="this.volume += 2"> Increase</button>
+        <button v-on:click="this.volume -= 2"> Decrease</button>
+
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        let app = Vue.createApp({
+            data : function() {
+                return{
+                   volume: 0
+                }
+            },
+            method: {
+                increaseVolume(){
+                    return this.volume +2
+                },
+                decreaseVolume(){
+                    return this.volume -2
+                },  
+            },
+            watch: {
+                volume(newValue, oldValue){
+                    if(newValue === 16){
+                        return alert("La musica esta fuerte")
+                    }
+                }
+            }
+        })
+
+        app.mount("#app")
+    </script>
+</body>
+</html>
